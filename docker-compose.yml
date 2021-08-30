@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  
+  mongo:
+    image: mongo:4.4.3-bionic
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+  
+  mongo-express:
+    image: mongo-express:0.54.0
+    ports:
+      - 127.0.0.1:8081:8081
+    depends_on:
+      - mongo
+    restart: always
+
+
+volumes:
+  mongo-data: {}
